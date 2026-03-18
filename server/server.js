@@ -4,7 +4,7 @@ import cors from "cors";
 import http from "http";
 import { connectDB } from "./lib/db.js";
 import userRouter from "./routes/userRoutes.js";
-import messsageRouter from "./routes/messageRoutes.js";
+import messageRouter from "./routes/messageRoutes.js";
 import {Server} from "socket.io";
 
 
@@ -51,7 +51,8 @@ app.use(cors());
 
 app.use("/api/status",(req,res)=>res.send("Server is live"));
 app.use("/api/auth",userRouter);
-app.use("/api/messages",messsageRouter);
+app.use("/api/messages",messageRouter);
+
 
 
 
@@ -59,3 +60,5 @@ app.use("/api/messages",messsageRouter);
 await connectDB();
 const PORT= process.env.PORT ||5000;
 server.listen(PORT,()=>console.log("Server is runing on Port " + PORT));
+
+//MONGO_URI=mongodb://localhost:27017/chat-app
